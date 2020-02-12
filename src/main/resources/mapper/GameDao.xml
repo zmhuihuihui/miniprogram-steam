@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.demo.miniprogram.dao.GameDao">
+
+    <resultMap id="gameMap" type="com.demo.miniprogram.entity.Game">
+        <id column="gameId" property="gameId"/>
+        <result column="name" property="name"/>
+        <result column="price" property="price"/>
+        <result column="oldprice" property="price"/>
+        <result column="lowestPrice" property="lowestPrice"/>
+        <result column="discount" property="discount"/>
+        <result column="score" property="score"/>
+        <result column="priority" property="priority"/>
+        <result column="imageUrl" property="imageUrl"/>
+        <result column="logoUrl" property="logoUrl"/>
+        <result column="introduction" property="introduction"/>
+        <result column="tag" property="tag"/>
+        <result column="releaseDate" property="releaseDate"/>
+
+    </resultMap>
+
+
+    <select id="queryGame" resultMap="gameMap">
+        select gameId,name,price,oldprice,lowestPrice,discount,score,priority,imageUrl,logoUrl,introduction,tag,releaseDate
+        from game
+        <where>
+            <if test="gameCondition.gameId != null">
+                and gameId = #{gameCondition.gameId}
+            </if>
+            <if test="gameCondition.name != null">
+                and name like '%${gameCondition.name}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="queryGameByHot" resultMap="gameMap">
+        select gameId,name,price,oldprice,lowestPrice,discount,score,priority,imageUrl,logoUrl,introduction,tag,releaseDate
+        from game
+        order by priority desc
+        limit #{limit}
+    </select>
+
+    <select id="queryGameByDiscount" resultMap="gameMap">
+        select gameId,name,price,oldprice,lowestPrice,discount,score,priority,imageUrl,logoUrl,introduction,tag,releaseDate
+        from game
+        order by discount desc
+        limit #{limit}
+    </select>
+
+    <select id="queryGameByDate" resultMap="gameMap">
+        select gameId,name,price,oldprice,discount,score,priority,imageUrl,logoUrl,introduction,tag,releaseDate
+        from game
+        order by releaseDate desc
+        limit #{limit}
+    </select>
+
+</mapper>
