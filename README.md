@@ -1,4 +1,4 @@
-# miniprogram-steam
+# 微信小程序——steam小助手
 
 > 前端项目地址：https://github.com/SlowStepFestival/GameAssistant
 
