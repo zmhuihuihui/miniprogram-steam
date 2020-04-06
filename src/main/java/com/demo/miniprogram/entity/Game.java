@@ -1,9 +1,10 @@
 package com.demo.miniprogram.entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Game {
+public class Game implements Serializable {
     private Integer gameId;     //游戏id(主键)
     private String name;        //游戏名字
     private Integer price;      //游戏现价

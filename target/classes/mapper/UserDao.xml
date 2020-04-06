@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.demo.miniprogram.dao.UserDao">
+
+    <select id="queryPasswordByName" resultType="String">
+        select password
+        from user
+        where username = #{username}
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyColumn="username" keyProperty="username">
+        insert into user(username,password)
+        values (#{user.username},#{user.password})
+    </insert>
+
+</mapper>

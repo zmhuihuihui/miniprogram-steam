@@ -1,6 +1,7 @@
 package com.demo.miniprogram.controller;
 
 
+import com.demo.miniprogram.Util.HttpServletRequestUtil;
 import com.demo.miniprogram.entity.Achievement;
 import com.demo.miniprogram.service.AchievementService;
 import org.slf4j.Logger;
@@ -28,7 +29,8 @@ public class AchievementController {
     @RequestMapping(value = "/achievements",method = RequestMethod.GET)
     public Map<String,Object> getAchievements(HttpServletRequest request){
         Map<String,Object> model = new HashMap<>();
-        String gameId = request.getParameter("gameId");
+        //String gameId = request.getParameter("gameId");
+        String gameId = HttpServletRequestUtil.getString(request,"gameId");
         if(gameId != null){
             try {
                 List<Achievement> achievementList = achievementService.queryAchievementList(Integer.parseInt(gameId));

@@ -1,6 +1,8 @@
 package com.demo.miniprogram.entity;
 
-public class Achievement {
+import java.io.Serializable;
+
+public class Achievement implements Serializable {
     private Integer achievementId;   //主键
     private String achievementName;  //成就名字
     private String imageUrl;         //成就图片
